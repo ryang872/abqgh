@@ -169,8 +169,8 @@ GS_BUCKET_NAME = 'abqgh'
 # GOOGLE_APPLICATION_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
 
-STATIC_URL = '/abqgh/static/'
-MEDIA_URL = '/abqgh/media/'
+STATIC_URL = '/static/'
+MEDIA_URL = '/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
