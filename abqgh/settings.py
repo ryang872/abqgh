@@ -58,6 +58,7 @@ COMMENT_MAX_LENGTH = 140
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
