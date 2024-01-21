@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load auth_extras %}
+{% block content %}
+
+
+{#    <h2>Name: {{ gatedetail.complex }}</h2>#}
+{#    <h3>Address: {{ gatedetail.address }}</h3>#}
+{#    <h4>Code: {{ gatedetail.code }}</h4>#}
+
+    <div class="col-sm-6 col-md-4">
+                    <br />
+                        <div id="gatetitle">
+                            {{ gatedetail.complex }}
+                        </div>
+                        <p>
+
+                            <i class="fas fa-map-marker-alt">&nbsp;&nbsp;&nbsp;{{ gatedetail.address }}</i>
+                            <br />
+                            <i class="fas fa-door-open">&nbsp;&nbsp;{{ gatedetail.code }}</i>
+                            <br />
+
+                            {%  if request.user|has_group:"canremove" %}
+                                <form method="post" action="{% url 'delete_gate' gatedetail.pk %}">
+                                    {% csrf_token %}
+                                    <button type="submit" id="delete" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                                <br />
+                            {% endif %}
+    </div>
+        <script>
+            document
+                .getElementById("delete")
+                .addEventListener("click", function( e ){ //e => event
+                    if( ! confirm("Are you sure you want to delete?") ){
+                        e.preventDefault(); // ! => don't want to do this
+                    } else {
+                        //want to do this! => maybe do something about it?
+                        alert('Ok, lets do this!');
+                    }
+                });
+        </script>
+
+
+    {% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-xl-9 mx-auto">
+        <div class="card card-signin flex-row my-5">
+          <div class="d-none d-md-flex">
+          </div>
+            <div class="card-body">
+                <button class="btn-block text-uppercase ghbtn" type="button" onclick="window.location.href = '{% url 'tip_list' %}';">Tip List</button>
+                <button class="btn-block text-uppercase ghbtn" type="button" onclick="window.location.href = '{% url 'gate_list' %}';">Gate Codes</button>
+                <button class="btn-block text-uppercase ghbtn" type="button" onclick="window.location.href = '{% url 'map_list' %}';">Maps</button>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <br />
+{% endblock %}

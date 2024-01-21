@@ -1,0 +1,9 @@
+django
+python-dotenv
+requests
+Pillow
+django-crispy-forms
+django-storages
+google-cloud-storage
+dj_database_url
+django-contrib-comments

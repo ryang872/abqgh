@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+     <form class="form-inline my-2" action="{% url 'tip_list' %}">
+          <div class="input-group">
+               <input class="searchfield form-control mr-sm-2" id="searchbox" name="q" type="text" value="{{ request.GET.q }}" placeholder="Search by first name"/>
+              <div class="input-group-btn">
+                   <button class="btn form-control" type="submit">
+                        <i class="fas fa-search"></i>
+                   </button>
+              </div>
+          </div>
+     </form>
+
+    <div class="list-group">
+        {% for tip in tips %}
+            <a href="{% url 'tip_list' %}{{ tip.pk }}" class="list-group-item acolor">{{ tip.fullname }}</a>
+        {% endfor %}
+    </div>
+    <br />
+
+
+{% endblock %}

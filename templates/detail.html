@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+{% load auth_extras %}
+{% load comments %}
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-10">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-8">
+                        {% if tipDetail.screenshot %}
+                            <a href="{{ tipDetail.screenshot.url }}"><img src="{{ tipDetail.screenshot.url}}" alt="" class="img-rounded img-responsive" /></a>
+                            <br>
+                        {% else %}
+                            <img src="https://storage.googleapis.com/abqgh/static/upload/NoScreenshot.png">
+                            <br>
+                        {% endif %}
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <br />
+                        <h4>
+                            {{ tipDetail.fullname }}
+                        </h4>
+                        <p>
+                            {% if tipDetail.address %}
+                                <i class="fas fa-map-marker-alt"></i> {{ tipDetail.address }}
+                                <br />
+                            {% endif %}
+                            <br />
+
+                            {%  if request.user|has_group:"canremove" %}
+                                <form method="post" action="{% url 'delete_person' tipDetail.pk %}">
+                                    {% csrf_token %}
+                                    <button type="submit" id="delete" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                                <br />
+                            {% endif %}
+
+
+
+                        {%  if request.user|has_group:"cancomment" %}
+                            {% get_comment_form for tipDetail as form %}
+                            <form action="{% comment_form_target %}" method="POST">
+                                {% csrf_token %}
+                                {{ form.comment }}
+                                {{ form.honeypot }}
+                                {{ form.content_type }}
+                                {{ form.object_pk }}
+                                {{ form.timestamp }}
+                                {{ form.security_hash }}
+                                <input type="hidden" name="next" value="{% url 'tip_detail' tipDetail.id %}" />
+                                <input type="submit" value="Add repeat date" id="id_submit" />
+                            </form>
+                        {% endif %}
+
+
+                        {% render_comment_list for tipDetail %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        document
+            .getElementById("delete")
+            .addEventListener("click", function( e ){ //e => event
+                if( ! confirm("Are you sure you want to delete?") ){
+                    e.preventDefault(); // ! => don't want to do this
+                } else {
+                    //want to do this! => maybe do something about it?
+                    alert('Ok, lets do this!');
+                }
+            });
+    </script>
+{% endblock %}

@@ -1,0 +1,1 @@
+web: gunicorn abqgh.wsgi --log-file -

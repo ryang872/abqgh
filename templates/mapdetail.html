@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load auth_extras %}
+{% block content %}
+
+    <div class="container">
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-10">
+            <div class="well well-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-8">
+                        <div class="mapthumb">
+                            <a target="_blank" href="{{ mapdetail.complex_map.url }}">
+                                <img src="{{ mapdetail.complex_map.url }}" id="mapthumbnail" alt="Map">
+                            </a><br />
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-4">
+                        <h5>
+                            {{ mapdetail.complex_name }}
+                        </h5>
+                        <p>
+                            <i class="fas fa-map-marker-alt"></i> {{ mapdetail.complex_address }}
+                            <br />
+
+                            {%  if request.user|has_group:"canremove" %}
+                                <form method="post" action="{% url 'delete_map' mapdetail.pk %}">
+                                    {% csrf_token %}
+                                    <button type="submit" id="delete" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                                <br />
+                            {% endif %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+    <script>
+        document
+            .getElementById("delete")
+            .addEventListener("click", function( e ){ //e => event
+                if( ! confirm("Are you sure you want to delete?") ){
+                    e.preventDefault(); // ! => don't want to do this
+                } else {
+                    //want to do this! => maybe do something about it?
+                    alert('Ok, lets do this!');
+                }
+            });
+    </script>
+
+
+
+
+
+{#    <div class="map_detail">#}
+{#        <div class="mapthumb">#}
+{#            <a target="_blank" href="{{ mapdetail.complex_map.url }}">#}
+{#                <img src="{{ mapdetail.complex_map.url }}" id="mapthumbnail" alt="Map" style="width:150px">#}
+{#            </a><br />#}
+{#        </div>#}
+{#        <div class="mapdetail">#}
+{#            <p>#}
+{#                {{ mapdetail.complex_name }}<br />#}
+{#                {{ mapdetail.complex_address }}#}
+{#            </p>#}
+{##}
+{##}
+{#        </div>#}
+{#        <div class="mapmap">#}
+{#            <img src="/static/maps/quality.png" alt="">#}
+{#        </div>#}
+{#    </div>#}
+{##}
+{#    {%  if request.user|has_group:"canremove" %}#}
+{#        <div style="padding: 10px;">#}
+{#        <form method="post" action="{% url 'delete_map' mapdetail.pk %}">#}
+{#            {% csrf_token %}#}
+{#            <button type="submit" id="delete" class="btn btn-danger btn-sm">Delete</button>#}
+{#        </form>#}
+{#        </div>#}
+{#        <br />#}
+{#    {% endif %}#}
+{##}
+{#<script>#}
+{#        document#}
+{#            .getElementById("delete")#}
+{#            .addEventListener("click", function( e ){ //e => event#}
+{#                if( ! confirm("Are you sure you want to delete?") ){#}
+{#                    e.preventDefault(); // ! => don't want to do this#}
+{#                } else {#}
+{#                    //want to do this! => maybe do something about it?#}
+{#                    alert('Ok, lets do this!');#}
+{#                }#}
+{#            });#}
+{#    </script>#}
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
