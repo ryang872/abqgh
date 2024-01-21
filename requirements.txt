@@ -8,3 +8,4 @@ google-cloud-storage
 dj_database_url
 django-contrib-comments
 crispy-bootstrap4
+django-jazzmin
