@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-import django_heroku
-import dj_database_url
+from dotenv import load_dotenv
+project_folder = os.path.expanduser('~/abqgh')  # adjust as appropriate
+load_dotenv(os.path.join(project_folder, '.env'))
 import google.cloud.storage
 from django.urls import reverse_lazy
 
@@ -49,7 +50,7 @@ EMAIL_USE_TLS = True
 SERVER_EMAIL = EMAIL_HOST_USER
 SITE_ID = 1
 
-ALLOWED_HOSTS = ['abqgh.herokuapp.com', '*']
+ALLOWED_HOSTS = ['ryang872.pythonanywhere.com', '*']
 LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = reverse_lazy('home')
 COMMENT_MAX_LENGTH = 140
@@ -153,23 +154,23 @@ USE_L10N = True
 USE_TZ = True
 
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
-db_from_env = dj_database_url.config()
-DATABASES['default'].update(db_from_env)
+# db_from_env = dj_database_url.config()
+# DATABASES['default'].update(db_from_env)
 
 
 # For Gcloud Storage
 
 DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
 GS_BUCKET_NAME = 'abqgh'
-STATIC_URL = 'https://storage.googleapis.com/abqgh/static/'
-MEDIA_URL = 'https://storage.googleapis.com/abqgh/media/'
+# STATIC_URL = 'https://storage.googleapis.com/abqgh/static/'
+# MEDIA_URL = 'https://storage.googleapis.com/abqgh/media/'
 # GOOGLE_APPLICATION_CREDENTIALS = os.getenv('GOOGLE_APPLICATION_CREDENTIALS')
 
 
-# STATIC_URL = '/static/'
-# MEDIA_URL = '/media/'
+STATIC_URL = '/abqgh/static/'
+MEDIA_URL = '/abqgh/media/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = (
