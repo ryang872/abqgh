@@ -23,7 +23,7 @@ from upload.views import HomePageView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', HomePageView.as_view(), name='home'),
+    path('abqgh/', HomePageView.as_view(), name='home'),
     path('tiplist/', include('upload.urls')),
     path('comments/', include('django_comments.urls')),
     path('gatecode/', include('gatecode.urls')),
