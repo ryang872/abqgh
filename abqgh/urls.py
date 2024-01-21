@@ -22,15 +22,15 @@ from django.contrib.auth.views import LoginView, LogoutView
 from upload.views import HomePageView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('abqgh/admin/', admin.site.urls),
     path('abqgh/', HomePageView.as_view(), name='home'),
-    path('tiplist/', include('upload.urls')),
-    path('comments/', include('django_comments.urls')),
-    path('gatecode/', include('gatecode.urls')),
-    path('maps/', include('maps.urls')),
+    path('abqgh/tiplist/', include('upload.urls')),
+    path('abqgh/comments/', include('django_comments.urls')),
+    path('abqgh/gatecode/', include('gatecode.urls')),
+    path('abqgh/maps/', include('maps.urls')),
     # path('', include('pwa.urls')),
-    path('login/', LoginView.as_view(template_name='login.html'), name='login'),
-    path('logout/', LogoutView.as_view(template_name='logged_out.html'), name='logout'),
+    path('abqgh/login/', LoginView.as_view(template_name='login.html'), name='login'),
+    path('abqgh/logout/', LogoutView.as_view(template_name='logged_out.html'), name='logout'),
 ]
 
 if settings.DEBUG:
